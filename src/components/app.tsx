@@ -1,10 +1,11 @@
 import { FunctionalComponent, h } from "preact";
 import { Route, Router, RouterOnChangeArgs } from "preact-router";
 
-import Home from "../routes/home";
-import Profile from "../routes/profile";
 import NotFoundPage from "../routes/notfound";
 import Header from "./header";
+import LapTimes from "../routes/laptimes";
+import Redirect from "./redirect";
+import Comparer from "../routes/comparer";
 
 const App: FunctionalComponent = () => {
     let currentUrl: string;
@@ -16,9 +17,9 @@ const App: FunctionalComponent = () => {
         <div id="app">
             <Header />
             <Router onChange={handleRoute}>
-                <Route path="/" component={Home} />
-                <Route path="/profile/" component={Profile} user="me" />
-                <Route path="/profile/:user" component={Profile} />
+                <Redirect path="/" to="/laptimes" />
+                <Route path="/laptimes" component={LapTimes} />
+                <Route path="/comparer" component={Comparer} />
                 <NotFoundPage default />
             </Router>
         </div>

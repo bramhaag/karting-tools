@@ -7,14 +7,11 @@ const Header: FunctionalComponent = () => {
         <header class={style.header}>
             <h1>Preact App</h1>
             <nav>
-                <Link activeClassName={style.active} href="/">
-                    Home
+                <Link activeClassName={style.active} href="/laptimes">
+                    Lap Times Parser
                 </Link>
-                <Link activeClassName={style.active} href="/profile">
-                    Me
-                </Link>
-                <Link activeClassName={style.active} href="/profile/john">
-                    John
+                <Link activeClassName={style.active} href="/comparer">
+                    Lap Comparer
                 </Link>
             </nav>
         </header>
