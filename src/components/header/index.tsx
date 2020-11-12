@@ -1,20 +1,15 @@
 import { FunctionalComponent, h } from "preact";
-import { Link } from "preact-router/match";
-import * as style from "./style.css";
+import { Navbar } from "preact-bulma";
 
 const Header: FunctionalComponent = () => {
     return (
-        <header class={style.header}>
-            <h1>Preact App</h1>
-            <nav>
-                <Link activeClassName={style.active} href="/laptimes">
-                    Lap Times Parser
-                </Link>
-                <Link activeClassName={style.active} href="/comparer">
-                    Lap Comparer
-                </Link>
-            </nav>
-        </header>
+        <Navbar.Navbar class="is-dark">
+            <Navbar.Brand><span>Karting Tools</span></Navbar.Brand>
+            <Navbar.Menu side="end">
+                <a href="/laptimes" class="navbar-item">Lap Times Parser</a>
+                <a href="/comparer" class="navbar-item">Lap Comparer</a>
+            </Navbar.Menu>
+        </Navbar.Navbar>
     );
 };
 
