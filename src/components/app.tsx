@@ -6,6 +6,7 @@ import Header from "./header";
 import LapTimes from "../routes/laptimes";
 import Redirect from "./redirect";
 import Comparer from "../routes/comparer";
+import BASE_PATH from "../baseroute";
 
 const App: FunctionalComponent = () => {
     let currentUrl: string;
@@ -17,9 +18,9 @@ const App: FunctionalComponent = () => {
         <div id="app">
             <Header />
             <Router onChange={handleRoute}>
-                <Redirect path="/" to="/laptimes" />
-                <Route path="/laptimes" component={LapTimes} />
-                <Route path="/comparer" component={Comparer} />
+                <Redirect path={`${BASE_PATH}/`} to="/laptimes" />
+                <Route path={`${BASE_PATH}/laptimes`} component={LapTimes} />
+                <Route path={`${BASE_PATH}/comparer`} component={Comparer} />
                 <NotFoundPage default />
             </Router>
         </div>
