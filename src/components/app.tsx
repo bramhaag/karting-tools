@@ -1,5 +1,4 @@
 import { FunctionalComponent, h } from "preact";
-import { Route, Router, RouterOnChangeArgs } from "preact-router";
 
 import NotFoundPage from "../routes/notfound";
 import Header from "./header";
@@ -7,6 +6,8 @@ import LapTimes from "../routes/laptimes";
 import Redirect from "./redirect";
 import Comparer from "../routes/comparer";
 import BASE_PATH from "../baseroute";
+import Router, { Route, RouterOnChangeArgs } from "preact-router";
+import { createHashHistory } from "history";
 
 const App: FunctionalComponent = () => {
     let currentUrl: string;
@@ -17,7 +18,7 @@ const App: FunctionalComponent = () => {
     return (
         <div id="app">
             <Header />
-            <Router onChange={handleRoute}>
+            <Router onChange={handleRoute} history={createHashHistory()}>
                 <Redirect path={`${BASE_PATH}/`} to={`${BASE_PATH}/laptimes`} />
                 <Route path={`${BASE_PATH}/laptimes`} component={LapTimes} />
                 <Route path={`${BASE_PATH}/comparer`} component={Comparer} />
