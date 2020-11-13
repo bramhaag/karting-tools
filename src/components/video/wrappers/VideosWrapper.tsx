@@ -1,53 +1,55 @@
-import VideoWrapper from './VideoWrapper'
-import GlobalVideoControls from '../controls/GlobalVideoControls'
-import { SeekAmount, SeekDirection } from '../Video'
-import { Component, RefObject, createRef, h } from 'preact'
-import { getLaps } from '../../../util/lap_util'
+import VideoWrapper from "./VideoWrapper";
+import GlobalVideoControls from "../controls/GlobalVideoControls";
+import { SeekAmount, SeekDirection } from "../Video";
+import { Component, RefObject, createRef, h, Fragment } from "preact";
+import { getLaps } from "../../../util/lap_util";
 
 export type VideosWrapperProps = {
-    targetId: string,
-    opportunityId: string,
-}
+    targetId: string;
+    opportunityId: string;
+};
 
 export class VideosWrapper extends Component<VideosWrapperProps> {
     targetLap: RefObject<VideoWrapper> = createRef();
     opportunityLap: RefObject<VideoWrapper> = createRef();
     controls: RefObject<GlobalVideoControls> = createRef();
 
-    offset = 0
+    offset = 0;
 
     componentDidMount() {
-        const { targetId, opportunityId } = this.props
+        const { targetId, opportunityId } = this.props;
 
-        getLaps(targetId).then(laps => this.targetLap.current?.setLaps(laps))
-        getLaps(opportunityId).then(laps => this.opportunityLap.current?.setLaps(laps))
+        getLaps(targetId).then(laps => this.targetLap.current?.setLaps(laps));
+        getLaps(opportunityId).then(laps =>
+            this.opportunityLap.current?.setLaps(laps)
+        );
     }
 
     playAll = () => {
-        this.targetLap.current?.video.current?.play()
-        this.opportunityLap.current?.video.current?.play()
+        this.targetLap.current?.video.current?.play();
+        this.opportunityLap.current?.video.current?.play();
 
         this.controls.current?.setPlaying(true);
-    }
+    };
 
     pauseAll = () => {
-        this.targetLap.current?.video.current?.pause()
-        this.opportunityLap.current?.video.current?.pause()
+        this.targetLap.current?.video.current?.pause();
+        this.opportunityLap.current?.video.current?.pause();
 
         this.controls.current?.setPlaying(false);
 
-        this.resync()
-    }
+        this.resync();
+    };
 
     seekAll = (amount: SeekAmount, direction: SeekDirection) => {
-        this.targetLap.current?.video.current?.seekTo(amount, direction)
-        this.opportunityLap.current?.video.current?.seekTo(amount, direction)
-    }
+        this.targetLap.current?.video.current?.seekTo(amount, direction);
+        this.opportunityLap.current?.video.current?.seekTo(amount, direction);
+    };
 
     changePlaybackSpeed = (speed: number) => {
-        this.targetLap.current?.video.current?.setPlaybackSpeed(speed)
-        this.opportunityLap.current?.video.current?.setPlaybackSpeed(speed)
-    }
+        this.targetLap.current?.video.current?.setPlaybackSpeed(speed);
+        this.opportunityLap.current?.video.current?.setPlaybackSpeed(speed);
+    };
 
     sync = () => {
         this.pauseAll();
@@ -55,49 +57,60 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         const targetTime = this.targetLap.current?.video.current?.getTime()!;
         const opportunityTime = this.opportunityLap.current?.video.current?.getTime()!;
 
-        const currentTargetLap = this.targetLap.current?.currentLap!
-        const currentOpportunityLap = this.opportunityLap.current?.currentLap!
+        const currentTargetLap = this.targetLap.current?.currentLap!;
+        const currentOpportunityLap = this.opportunityLap.current?.currentLap!;
 
-        const targetOffset = targetTime - currentTargetLap.start
-        const opportunityOffset = opportunityTime - currentOpportunityLap.start
+        const targetOffset = targetTime - currentTargetLap.start;
+        const opportunityOffset = opportunityTime - currentOpportunityLap.start;
 
-        this.offset = opportunityOffset - targetOffset
-        this.opportunityLap.current?.video?.current?.setState( {offset: this.offset })
+        this.offset = opportunityOffset - targetOffset;
+        this.opportunityLap.current?.video?.current?.setState({
+            offset: this.offset
+        });
         this.resync();
-    }
+    };
 
     resync = () => {
         const targetTime = this.targetLap.current?.video.current?.getTime()!;
 
-        const currentTargetLap = this.targetLap.current?.currentLap!
-        const currentOpportunityLap = this.opportunityLap.current?.currentLap!
+        const currentTargetLap = this.targetLap.current?.currentLap!;
+        const currentOpportunityLap = this.opportunityLap.current?.currentLap!;
 
-        const targetOffset = targetTime - currentTargetLap.start
-        const opportunityOffset = targetOffset + this.offset
+        const targetOffset = targetTime - currentTargetLap.start;
+        const opportunityOffset = targetOffset + this.offset;
 
-        this.opportunityLap.current?.video?.current?.seekTo({seconds: currentOpportunityLap.start + opportunityOffset})
-    }
+        this.opportunityLap.current?.video?.current?.seekTo({
+            seconds: currentOpportunityLap.start + opportunityOffset
+        });
+    };
 
     reset = () => {
-        const currentTargetLap = this.targetLap.current?.currentLap!
-        const currentOpportunityLap = this.opportunityLap.current?.currentLap!
+        const currentTargetLap = this.targetLap.current?.currentLap!;
+        const currentOpportunityLap = this.opportunityLap.current?.currentLap!;
 
-        this.targetLap.current?.video.current?.seekTo({ seconds: currentTargetLap.start })
-        this.opportunityLap.current?.video.current?.seekTo({ seconds: currentOpportunityLap.start + this.offset })
-    }
+        this.targetLap.current?.video.current?.seekTo({
+            seconds: currentTargetLap.start
+        });
+        this.opportunityLap.current?.video.current?.seekTo({
+            seconds: currentOpportunityLap.start + this.offset
+        });
+    };
 
     render() {
-        const { targetId, opportunityId } = this.props
+        const { targetId, opportunityId } = this.props;
         return (
-            <div>
+            <Fragment>
                 <section className="section">
                     <div className="columns is-centered">
                         <VideoWrapper ref={this.targetLap} videoId={targetId} />
-                        <VideoWrapper ref={this.opportunityLap} videoId={opportunityId} />
+                        <VideoWrapper
+                            ref={this.opportunityLap}
+                            videoId={opportunityId}
+                        />
                     </div>
                 </section>
                 <section className="section">
-                    <GlobalVideoControls 
+                    <GlobalVideoControls
                         ref={this.controls}
                         onPlay={this.playAll}
                         onPause={this.pauseAll}
@@ -106,11 +119,11 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
                         onSync={this.sync}
                         onResync={this.resync}
                         onReset={this.reset}
-                         />
+                    />
                 </section>
-            </div>
-        )
+            </Fragment>
+        );
     }
 }
 
-export default VideosWrapper
+export default VideosWrapper;
