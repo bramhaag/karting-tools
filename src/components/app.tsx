@@ -18,7 +18,7 @@ const App: FunctionalComponent = () => {
         <div id="app">
             <Header />
             <Router onChange={handleRoute}>
-                <Redirect path={`${BASE_PATH}/`} to="/laptimes" />
+                <Redirect path={`${BASE_PATH}/`} to={`${BASE_PATH}/laptimes`} />
                 <Route path={`${BASE_PATH}/laptimes`} component={LapTimes} />
                 <Route path={`${BASE_PATH}/comparer`} component={Comparer} />
                 <NotFoundPage default />
