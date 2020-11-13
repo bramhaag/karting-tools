@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "build": "preact build",
-        "build:gh": "GITHUB_PAGES=karting-tools preact build && dot-json ./build/manifest.json start-url \"/REPO_NAME/\"",
+        "build:gh": "GITHUB_PAGES=karting-tools preact build --no-prerender && dot-json ./build/manifest.json start-url \"/REPO_NAME/\"",
         "serve": "sirv build --port 8080 --cors --single",
         "dev": "preact watch",
         "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
