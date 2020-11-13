@@ -9,18 +9,18 @@ export type VideoWrapperProps = {
 export class VideoWrapper extends Component<VideoWrapperProps> {
     video: RefObject<Video> = createRef();
     controls: RefObject<VideoControls> = createRef();
+    laps?: Array<Lap>
     currentLap?: Lap
 
     setLaps = (laps: Array<Lap>) => {
+        this.laps = laps
         this.controls.current?.setState({ laps: laps })
-        if (0 in laps) {
-            this.setLap(laps[0])
-        }
     }
 
     setLap = (lap: Lap) => {
         this.video.current?.setState({ start: lap.start, end: lap.start + lap.time })
         this.currentLap = lap
+        this.controls.current?.setLap(lap)
     }
 
     render({ videoId }: VideoWrapperProps) {

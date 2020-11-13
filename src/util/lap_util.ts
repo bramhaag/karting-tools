@@ -60,6 +60,7 @@ export async function getLaps(id: string) {
 
     let currentTime = 0;
 
+    let i = 0
     description.forEach(line => {
         let match = lapRegex.exec(line);
         if (match === null) {
@@ -74,6 +75,7 @@ export async function getLaps(id: string) {
         }
 
         laps.push({
+            index: i++,
             start: currentTime / 1000,
             time: time / 1000
         });

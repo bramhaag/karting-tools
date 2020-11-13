@@ -9,13 +9,16 @@ import Router, { Route } from "preact-router";
 import { createHashHistory } from "history";
 
 const App: FunctionalComponent = () => {
+    const hashHistory = createHashHistory()
+
     return (
         <div id="app">
             <Header />
-            <Router history={createHashHistory()}>
+            <Router history={hashHistory}>
                 <Redirect path="/" to="/laptimes" />
-                <Route path="/laptimes" component={LapTimes} />
-                <Route path="/comparer" component={Comparer} />
+                <LapTimes path="/laptimes" />
+                <Comparer path="/comparer" />
+                <Comparer path="/comparer/:targetId/:opportunityId"/>
                 <NotFoundPage default />
             </Router>
         </div>

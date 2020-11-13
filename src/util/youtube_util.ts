@@ -8,6 +8,5 @@ export async function getVideo(id: string) {
     }
 
     const data = await result.json()
-    console.log(data.items[0])
     return data.items[0]
 }

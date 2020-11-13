@@ -1,3 +1,4 @@
+import { faToiletPaper } from "@fortawesome/free-solid-svg-icons";
 import { Component, h } from "preact";
 
 export type SelectItem = {
@@ -7,15 +8,16 @@ export type SelectItem = {
 };
 
 export type SelectControlProps = {
-    items: Array<SelectItem>;
     onSelect: (value: string) => void;
+    tooltip: string;
+    items: Array<SelectItem>;
 };
 
 export class SelectControl extends Component<SelectControlProps> {
-    render({ items, onSelect }: SelectControlProps) {
+    render({ onSelect, tooltip, items }: SelectControlProps) {
         return (
             <div className="column is-narrow">
-                <div className="select">
+                <div className="select" data-tooltip={tooltip}>
                     <select onChange={e => onSelect(e.currentTarget.value)}>
                         {items.map((item, i) => (
                             <option key={i} value={item.value} selected={item.selected}>

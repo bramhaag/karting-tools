@@ -1,8 +1,15 @@
+import { History } from "history";
 import { FunctionalComponent, h } from "preact"
-import VideosWrapper from "../../components/video/wrappers/VideosWrapper";
+import VideosWrapper, { VideosWrapperProps } from "../../components/video/wrappers/VideosWrapper";
 
-const Comparer: FunctionalComponent = () => {
-    return <VideosWrapper targetId="xOhRUDftMKM" opportunityId="xOhRUDftMKM" />
+export type ComparerProps = Partial<VideosWrapperProps>
+
+const Comparer: FunctionalComponent<ComparerProps> = ({ targetId, opportunityId }: ComparerProps) => {
+    if (targetId != null && opportunityId != null) {
+        return <VideosWrapper targetId={targetId} opportunityId={opportunityId} />
+    }
+
+    return <div>No laps specified!</div>
 }
 
 export default Comparer;

@@ -3,6 +3,8 @@ import GlobalVideoControls from "../controls/GlobalVideoControls";
 import { SeekAmount, SeekDirection } from "../Video";
 import { Component, RefObject, createRef, h, Fragment } from "preact";
 import { getLaps } from "../../../util/lap_util";
+import { History } from "history";
+import { setQuery } from "../../../util/history_util";
 
 export type VideosWrapperProps = {
     targetId: string;
@@ -19,10 +21,33 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
     componentDidMount() {
         const { targetId, opportunityId } = this.props;
 
-        getLaps(targetId).then(laps => this.targetLap.current?.setLaps(laps));
-        getLaps(opportunityId).then(laps =>
-            this.opportunityLap.current?.setLaps(laps)
-        );
+        const params = new URLSearchParams(window.location.search)
+        console.log(params)
+
+        const offset = params.get("offset")
+        if (offset) {
+            this.setOffset(Number(offset))
+        }
+
+        getLaps(targetId)
+            .then(laps => this.targetLap.current?.setLaps(laps))
+            .then(() => {
+                const targetLapIndex = params.get("tlap") ?? "0"
+                const lap = this.targetLap.current?.laps?.[Number(targetLapIndex)]
+                if (lap) {
+                    this.targetLap.current?.setLap(lap)
+                }
+            });
+
+        getLaps(opportunityId)
+            .then(laps => this.opportunityLap.current?.setLaps(laps))
+            .then(() => {
+                const opportunityLapIndex = params.get("olap") ?? "0"
+                const lap = this.opportunityLap.current?.laps?.[Number(opportunityLapIndex)]
+                if (lap) {
+                    this.opportunityLap.current?.setLap(lap)
+                }
+            });
     }
 
     playAll = () => {
@@ -51,6 +76,13 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         this.opportunityLap.current?.video.current?.setPlaybackSpeed(speed);
     };
 
+    setOffset = (offset: number) => {
+        this.offset = offset;
+        this.opportunityLap.current?.video?.current?.setState({
+            offset: this.offset
+        });
+    }
+
     sync = () => {
         this.pauseAll();
 
@@ -63,10 +95,12 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         const targetOffset = targetTime - currentTargetLap.start;
         const opportunityOffset = opportunityTime - currentOpportunityLap.start;
 
-        this.offset = opportunityOffset - targetOffset;
-        this.opportunityLap.current?.video?.current?.setState({
-            offset: this.offset
-        });
+        this.setOffset(opportunityOffset - targetOffset)
+
+        setQuery("offset", this.offset.toString())
+        setQuery("tlap", this.targetLap.current?.currentLap?.index.toString() ?? "0")
+        setQuery("olap", this.opportunityLap.current?.currentLap?.index.toString() ?? "0")
+
         this.resync();
     };
 
@@ -101,7 +135,9 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
             <Fragment>
                 <section className="section">
                     <div className="columns is-centered">
-                        <VideoWrapper ref={this.targetLap} videoId={targetId} />
+                        <VideoWrapper 
+                            ref={this.targetLap} 
+                            videoId={targetId} />
                         <VideoWrapper
                             ref={this.opportunityLap}
                             videoId={opportunityId}

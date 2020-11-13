@@ -39,7 +39,8 @@ export class GlobalVideoControls extends Component<GlobalVideoControlsProps> {
                     <BaseVideoControls ref={this.baseControls} {...this.props} />
                     <SelectControl
                         onSelect={speed => onPlaybackSpeedChange(Number(speed))}
-                        items={items} />
+                        items={items}
+                        tooltip="Set playback speed" />
                     <ButtonControl onClick={onReset} icon={faRedo} tooltip="Go to the start of the lap" />
                 </div>
             </div>
