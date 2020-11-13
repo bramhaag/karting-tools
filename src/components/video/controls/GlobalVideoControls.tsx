@@ -23,9 +23,11 @@ export class GlobalVideoControls extends Component<GlobalVideoControlsProps> {
         this.baseControls.current?.setState({ playing: playing })
     }
 
-    render() {
-        const { playbackSpeeds, onPlaybackSpeedChange, onSync, onResync, onReset } = this.props
-        const items: Array<SelectItem> = playbackSpeeds!.map(speed => ({ value: speed, text: `${speed}x`, selected: speed == 1 }))
+    render({ playbackSpeeds, onPlaybackSpeedChange, onSync, onResync, onReset }: GlobalVideoControlsProps) {
+        const items: Array<SelectItem> = playbackSpeeds!.map(speed => ({ 
+            value: speed.toString(), 
+            text: `${speed}x`, selected: speed == 1 
+        }))
 
         return (
             <div>

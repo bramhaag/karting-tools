@@ -27,15 +27,15 @@ export class VideoControls extends Component<VideoControlsProps, VideoControlsSt
         this.baseControls.current?.setState({ playing: playing })
     }
 
-    render() {
-        const { onLapChange } = this.props
-        const { laps } = this.state
-
+    render({ onLapChange }: VideoControlsProps, { laps }: VideoControlsState) {
         let items;
         if(laps.length == 0) {
-            items = [{value: -1, text: `No laps found`}]
+            items = [{value: "-1", text: `No laps found`}]
         } else {
-            items = laps.map((lap, i) => ({ value: i, text: `Lap ${i + 1}: ${toHuman(lap.time * 1000, false)}` }));
+            items = laps.map((lap, i) => ({ 
+                value: i.toString(), 
+                text: `Lap ${i + 1}: ${toHuman(lap.time * 1000, false)}` 
+            }));
         }
 
         return (

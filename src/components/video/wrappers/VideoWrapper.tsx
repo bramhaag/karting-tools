@@ -23,9 +23,7 @@ export class VideoWrapper extends Component<VideoWrapperProps> {
         this.currentLap = lap
     }
 
-    render() {
-        const { videoId } = this.props
-
+    render({ videoId }: VideoWrapperProps) {
         return (
             <div className="column">
                 <figure className="image is-16by9 mb-4">

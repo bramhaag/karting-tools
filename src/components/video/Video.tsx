@@ -93,10 +93,7 @@ export class Video extends Component<VideoProps, VideoState> {
         }
     }
 
-    render() {
-        const { videoId, onPlay, onPause } = this.props;
-
-
+    render({ videoId, onPlay, onPause }: VideoProps) {
         return (
             <YouTube
                 className="has-ratio"

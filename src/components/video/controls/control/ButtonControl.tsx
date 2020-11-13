@@ -17,25 +17,16 @@ export class ButtonControl extends Component<ButtonControlProps> {
         text: ""
     };
 
-    render() {
-        const { onClick, icon, tooltip, text, color } = this.props;
-
-        const buttonClasses = classNames(
-            {
-                [`${color}`]: color
-            },
-            "button"
-        );
+    render({ onClick, icon, tooltip, text, color }: ButtonControlProps) {
+        const buttonClasses = classNames({
+            [`${color}`]: color
+        }, "button");
 
         const buttonText = text ? <span>&nbsp;{text}</span> : "";
 
         return (
             <div className="column is-narrow">
-                <button
-                    className={buttonClasses}
-                    onClick={onClick}
-                    data-tooltip={tooltip}
-                >
+                <button className={buttonClasses} onClick={onClick} data-tooltip={tooltip}>
                     <FontAwesomeIcon icon={icon} />
                     {buttonText}
                 </button>

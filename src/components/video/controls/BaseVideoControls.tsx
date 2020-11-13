@@ -22,17 +22,12 @@ export type BaseVideoControlsState = {
     playing: boolean;
 };
 
-export class BaseVideoControls extends Component<
-    BaseVideoControlsProps,
-    BaseVideoControlsState
-> {
+export class BaseVideoControls extends Component<BaseVideoControlsProps,BaseVideoControlsState> {
     readonly state = {
         playing: false
     };
 
-    render() {
-        const { onPlay, onPause, onSeek } = this.props;
-        const { playing } = this.state;
+    render({ onPlay, onPause, onSeek }: BaseVideoControlsProps, { playing }: BaseVideoControlsState) {
 
         return (
             <Fragment>
@@ -59,12 +54,12 @@ export class BaseVideoControls extends Component<
                         tooltip="Pause"
                     />
                 ) : (
-                    <ButtonControl
-                        onClick={onPlay}
-                        icon={faPlay}
-                        tooltip="Play"
-                    />
-                )}
+                        <ButtonControl
+                            onClick={onPlay}
+                            icon={faPlay}
+                            tooltip="Play"
+                        />
+                    )}
 
                 <ButtonControl
                     onClick={() => onSeek({ frames: 1 }, SeekDirection.FORWARD)}

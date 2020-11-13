@@ -96,8 +96,7 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         });
     };
 
-    render() {
-        const { targetId, opportunityId } = this.props;
+    render({ targetId, opportunityId }: VideosWrapperProps) {
         return (
             <Fragment>
                 <section className="section">
