@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./routes/laptimes/index.tsx"],"names":["LapTimes"],"mappings":"6FAAA,uBAMeA,UAJuB,IAC3B","file":"route-laptimes.chunk.df339.esm.js","sourcesContent":["import { FunctionalComponent, h } from \"preact\"\n\nconst LapTimes: FunctionalComponent = () => {\n    return <div>Lap Times</div>\n}\n\nexport default LapTimes;\n\n"],"sourceRoot":""}
