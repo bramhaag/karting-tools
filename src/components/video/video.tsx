@@ -87,10 +87,10 @@ export class Video extends Component<VideoProps, VideoState> {
         return this.player.getCurrentTime();
     }
 
-    componentDidUpdate() { 
+    componentDidUpdate() {
         // Hack to remove empty <div class="has-ratio" /> that fucks up bulma for some reason
-        if (typeof(this.player.getIframe) === 'function') 
-        this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
+        if (typeof (this.player.getIframe) === 'function')
+            this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
     }
 
     private tick = () => {
@@ -100,6 +100,7 @@ export class Video extends Component<VideoProps, VideoState> {
         if (this.player.getCurrentTime() - offset < (start - LAP_MARGIN_START) || this.player.getCurrentTime() - offset > (end + LAP_MARGIN_END)) {
             this.seekTo({ seconds: start });
             this.shouldPause = true;
+            this.play();
         }
     }
 
@@ -109,7 +110,7 @@ export class Video extends Component<VideoProps, VideoState> {
                 containerClassName="yt-container"
                 className="has-ratio"
                 videoId={videoId}
-                opts={{playerVars: playerSettings}} 
+                opts={{ playerVars: playerSettings }}
                 onReady={this.initializePlayer}
                 onStateChange={this.stateChanged}
                 onPlay={onPlay}
