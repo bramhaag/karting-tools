@@ -16,8 +16,8 @@ export class ButtonControl extends Component<ButtonControlProps> {
         const buttonText = text ? <span>&nbsp;{text}</span> : "";
 
         return (
-            <div className="column is-narrow">
-                <Button color={color} onClick={onClick} data-tooltip={tooltip}>
+            <div className="column is-narrow" data-tooltip={tooltip}>
+                <Button color={color} onClick={onClick}>
                     <FontAwesomeIcon icon={icon} />
                     {buttonText}
                 </Button>
