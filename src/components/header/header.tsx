@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { Navbar } from "preact-bulma";
+import { getUrlWithoutParams } from "../../util/history_util";
 const Header: FunctionalComponent = () => {
     return (
         <Navbar.Navbar class="is-dark">
@@ -7,7 +8,7 @@ const Header: FunctionalComponent = () => {
                 <span>Karting Tools</span>
             </Navbar.Brand>
             <Navbar.Menu side="end">
-                <a href="/laptimes" class="navbar-item">
+                <a href="https://bramhaag.github.io/laptimes/" class="navbar-item">
                     Lap Times Parser
                 </a>
                 <a href="/comparer" class="navbar-item">
