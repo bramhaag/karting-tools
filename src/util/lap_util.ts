@@ -23,9 +23,6 @@ export function padTime(time: string) {
         result += `.${parts[1]}`
     }
 
-    console.log("in: " + time)
-    console.log("out: " + result)
-
     return result;
 }
 
