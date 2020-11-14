@@ -1,4 +1,4 @@
-import { Lap } from "../components/video/controls/VideoControls";
+import { Lap } from "../components/video/controls/video_controls";
 import { getVideo } from "./youtube_util";
 
 export function padTime(time: string) {

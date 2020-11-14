@@ -1,6 +1,6 @@
 import { Component, createRef, h, RefObject } from 'preact'
-import BaseVideoControls, { BaseVideoControlsProps } from './BaseVideoControls'
-import SelectControl from './control/SelectControl'
+import BaseVideoControls, { BaseVideoControlsProps } from './base_video_controls'
+import SelectControl from './control/select_control'
 import { toHuman } from '../../../util/lap_util'
 
 export type Lap = {

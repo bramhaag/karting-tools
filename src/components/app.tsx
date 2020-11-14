@@ -1,7 +1,7 @@
 import { FunctionalComponent, h } from "preact";
 
 import NotFoundPage from "../routes/notfound";
-import Header from "./header";
+import Header from "./header/header";
 import LapTimes from "../routes/laptimes";
 import Redirect from "./redirect";
 import Comparer from "../routes/comparer";

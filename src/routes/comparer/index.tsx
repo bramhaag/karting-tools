@@ -1,6 +1,6 @@
 import { History } from "history";
 import { FunctionalComponent, h } from "preact"
-import VideosWrapper, { VideosWrapperProps } from "../../components/video/wrappers/VideosWrapper";
+import VideosWrapper, { VideosWrapperProps } from "../../components/video/wrappers/videos_wrapper";
 
 export type ComparerProps = Partial<VideosWrapperProps>
 

@@ -1,6 +1,6 @@
-import VideoWrapper from "./VideoWrapper";
-import GlobalVideoControls from "../controls/GlobalVideoControls";
-import { SeekAmount, SeekDirection } from "../Video";
+import VideoWrapper from "./video_wrapper";
+import GlobalVideoControls from "../controls/global_video_controls";
+import { SeekAmount, SeekDirection } from "../video";
 import { Component, RefObject, createRef, h, Fragment } from "preact";
 import { getLaps } from "../../../util/lap_util";
 import { History } from "history";

@@ -9,8 +9,8 @@ import {
     faFastForward
 } from "@fortawesome/free-solid-svg-icons";
 import { Component, Fragment, h } from "preact";
-import { SeekAmount, SeekDirection } from "../Video";
-import ButtonControl from "./control/ButtonControl";
+import { SeekAmount, SeekDirection } from "../video";
+import ButtonControl from "./control/button_control";
 
 export type BaseVideoControlsProps = {
     onPlay: () => void;

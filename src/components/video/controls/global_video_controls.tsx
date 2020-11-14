@@ -1,8 +1,8 @@
 import { faStopwatch, faSync, faRedo } from '@fortawesome/free-solid-svg-icons';
 import { h, Component, RefObject, createRef } from 'preact';
-import BaseVideoControls, { BaseVideoControlsProps } from './BaseVideoControls'
-import ButtonControl from './control/ButtonControl';
-import SelectControl, { SelectItem } from './control/SelectControl'
+import BaseVideoControls, { BaseVideoControlsProps } from './base_video_controls'
+import ButtonControl from './control/button_control';
+import SelectControl, { SelectItem } from './control/select_control'
 
 export type GlobalVideoControlsProps = {
     playbackSpeeds?: Array<number>
