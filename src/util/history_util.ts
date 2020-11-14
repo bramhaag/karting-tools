@@ -8,3 +8,8 @@ export function setQuery(key: string, value: string) {
         path: url
     }, '', url);
 }
+
+export function getUrlWithoutParams() {
+    const loc = window.location
+    window.location.href = `${loc.protocol}//${loc.host}${loc.pathname}${loc.hash}`
+}

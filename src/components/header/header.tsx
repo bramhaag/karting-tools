@@ -1,5 +1,6 @@
 import { FunctionalComponent, h } from "preact";
 import { Navbar } from "preact-bulma";
+import { getUrlWithoutParams } from "../../util/history_util";
 const Header: FunctionalComponent = () => {
     return (
         <Navbar.Navbar class="is-dark">

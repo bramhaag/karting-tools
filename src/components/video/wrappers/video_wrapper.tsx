@@ -1,9 +1,11 @@
 import { Component, RefObject, createRef, h } from 'preact';
-import VideoControls, { Lap } from '../controls/VideoControls'
-import Video, { SeekAmount, SeekDirection } from '../Video'
+import VideoControls, { Lap } from '../controls/video_controls'
+import Video, { SeekAmount, SeekDirection } from '../video'
 
 export type VideoWrapperProps = {
     videoId: string,
+    onPlay: () => void
+    onPause: () => void
 }
 
 export class VideoWrapper extends Component<VideoWrapperProps> {
@@ -23,6 +25,16 @@ export class VideoWrapper extends Component<VideoWrapperProps> {
         this.controls.current?.setLap(lap)
     }
 
+    onVideoPlay = () => {
+        this.controls.current?.setPlaying(true)
+        this.props.onPlay()
+    }
+
+    onVideoPause = () => {
+        this.controls.current?.setPlaying(false)
+        this.props.onPause()
+    }
+
     render({ videoId }: VideoWrapperProps) {
         return (
             <div className="column">
@@ -30,8 +42,8 @@ export class VideoWrapper extends Component<VideoWrapperProps> {
                     <Video
                         ref={this.video}
                         videoId={videoId}
-                        onPlay={() => this.controls.current?.setPlaying(true)}
-                        onPause={() => this.controls.current?.setPlaying(false)}
+                        onPlay={() => this.onVideoPlay()}
+                        onPause={() => this.onVideoPause()}
                     />
                 </figure>
                 <VideoControls

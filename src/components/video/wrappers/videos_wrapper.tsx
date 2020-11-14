@@ -18,6 +18,8 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
     controls: RefObject<GlobalVideoControls> = createRef();
 
     offset = 0;
+    targetPlaying = false;
+    opportunityPlaying = false;
 
     componentDidMount() {
         const { targetId, opportunityId } = this.props;
@@ -131,6 +133,32 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         });
     };
 
+    onTargetPlay = () => {
+        this.targetPlaying = true
+        this.controls.current?.setPlaying(true);
+    }
+
+    onTargetPause = () => {
+        this.targetPlaying = false
+
+        if (!this.opportunityPlaying) {
+            this.controls.current?.setPlaying(false);
+        }
+    }
+
+    onOpportunityPlay = () => {
+        this.opportunityPlaying = true;
+        this.controls.current?.setPlaying(true);
+    }
+
+    onOpportunityPause = () => {
+        this.opportunityPlaying = false;
+
+        if (!this.targetPlaying) {
+            this.controls.current?.setPlaying(false);
+        }
+    }
+
     render({ targetId, opportunityId }: VideosWrapperProps) {
         return (
             <Fragment>
@@ -138,10 +166,15 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
                     <div className="columns is-centered">
                         <VideoWrapper
                             ref={this.targetLap}
-                            videoId={targetId} />
+                            videoId={targetId}
+                            onPlay={this.onTargetPlay} 
+                            onPause={this.onTargetPause}
+                            />
                         <VideoWrapper
                             ref={this.opportunityLap}
                             videoId={opportunityId}
+                            onPlay={this.onOpportunityPlay}
+                            onPause={this.onOpportunityPause}
                         />
                     </div>
                 </Section>
