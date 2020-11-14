@@ -1,4 +1,3 @@
-import { faToiletPaper } from "@fortawesome/free-solid-svg-icons";
 import { Component, h } from "preact";
 
 export type SelectItem = {

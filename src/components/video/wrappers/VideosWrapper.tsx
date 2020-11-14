@@ -5,6 +5,7 @@ import { Component, RefObject, createRef, h, Fragment } from "preact";
 import { getLaps } from "../../../util/lap_util";
 import { History } from "history";
 import { setQuery } from "../../../util/history_util";
+import { Section } from "preact-bulma";
 
 export type VideosWrapperProps = {
     targetId: string;
@@ -133,18 +134,18 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
     render({ targetId, opportunityId }: VideosWrapperProps) {
         return (
             <Fragment>
-                <section className="section">
+                <Section>
                     <div className="columns is-centered">
-                        <VideoWrapper 
-                            ref={this.targetLap} 
+                        <VideoWrapper
+                            ref={this.targetLap}
                             videoId={targetId} />
                         <VideoWrapper
                             ref={this.opportunityLap}
                             videoId={opportunityId}
                         />
                     </div>
-                </section>
-                <section className="section">
+                </Section>
+                <Section>
                     <GlobalVideoControls
                         ref={this.controls}
                         onPlay={this.playAll}
@@ -155,7 +156,7 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
                         onResync={this.resync}
                         onReset={this.reset}
                     />
-                </section>
+                </Section>
             </Fragment>
         );
     }

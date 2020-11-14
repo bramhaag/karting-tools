@@ -1,7 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Component, h } from "preact";
-import classNames from "classnames";
 import { Button } from "preact-bulma";
 
 export type ButtonControlProps = {

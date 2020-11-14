@@ -49,8 +49,6 @@ export class VideoControls extends Component<VideoControlsProps, VideoControlsSt
             }));
         }
 
-        console.log(items)
-
         return (
             <div className="columns is-centered is-gapless">
                 <SelectControl
