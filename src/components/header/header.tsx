@@ -8,7 +8,7 @@ const Header: FunctionalComponent = () => {
                 <span>Karting Tools</span>
             </Navbar.Brand>
             <Navbar.Menu side="end">
-                <a href="/laptimes" class="navbar-item">
+                <a href="https://bramhaag.github.io/laptimes/" class="navbar-item">
                     Lap Times Parser
                 </a>
                 <a href="/comparer" class="navbar-item">

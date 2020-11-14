@@ -15,7 +15,7 @@ const App: FunctionalComponent = () => {
         <div id="app">
             <Header />
             <Router history={hashHistory}>
-                <Redirect path="/" to="/laptimes" />
+                <Redirect path="/" to="/comparer" />
                 <LapTimes path="/laptimes" />
                 <Comparer path="/comparer" />
                 <Comparer path="/comparer/:targetId/:opportunityId"/>
