@@ -32,7 +32,7 @@ export class GlobalVideoControls extends Component<GlobalVideoControlsProps> {
         return (
             <div>
                 <div style={{width: "fit-content", margin: "auto"}}>
-                    <ButtonControl onClick={onSync} icon={faStopwatch} tooltip="Sync videos" text="Sync videos" color="is-info" />
+                    <ButtonControl onClick={onSync} icon={faStopwatch} tooltip="Sync videos" text="Sync videos" color="info" />
                 </div>
                 <div className="columns is-centered is-gapless">
                     <ButtonControl onClick={onResync} icon={faSync} tooltip="Resync videos" />
