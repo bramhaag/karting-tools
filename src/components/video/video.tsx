@@ -46,6 +46,9 @@ export class Video extends Component<VideoProps, VideoState> {
         this.player = e.target;
         this.play()
 
+        // Hack to remove empty <div class="has-ratio" /> that fucks up bulma for some reason
+        this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
+
         setInterval(this.tick, 10)
     }
 
