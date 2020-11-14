@@ -45,8 +45,6 @@ export class Video extends Component<VideoProps, VideoState> {
     initializePlayer = (e: { target: YouTubePlayer }) => {
         this.player = e.target;
         this.play()
-
-        // Hack to remove empty <div class="has-ratio" /> that fucks up bulma for some reason
         this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
 
         setInterval(this.tick, 10)
@@ -88,6 +86,12 @@ export class Video extends Component<VideoProps, VideoState> {
         return this.player.getCurrentTime();
     }
 
+    componentDidUpdate() { 
+        // Hack to remove empty <div class="has-ratio" /> that fucks up bulma for some reason
+        if (typeof(this.player.getIframe) === 'function') 
+        this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
+    }
+
     private tick = () => {
         let { start, end, offset } = this.state;
         end = (end === -1) ? this.player.getDuration() : end;
@@ -101,6 +105,7 @@ export class Video extends Component<VideoProps, VideoState> {
     render({ videoId, onPlay, onPause }: VideoProps) {
         return (
             <YouTube
+                containerClassName="yt-container"
                 className="has-ratio"
                 videoId={videoId}
                 opts={{playerVars: playerSettings}} 
