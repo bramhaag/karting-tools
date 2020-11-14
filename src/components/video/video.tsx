@@ -2,7 +2,8 @@ import { Component, h } from 'preact'
 import YouTube, { PlayerVars } from 'react-youtube'
 import { YouTubePlayer } from 'youtube-player/dist/types'
 
-const LAP_MARGIN = 1.5
+const LAP_MARGIN_START = 6
+const LAP_MARGIN_END = 1.5
 
 export type SeekAmount = {
     seconds?: number,
@@ -96,7 +97,7 @@ export class Video extends Component<VideoProps, VideoState> {
         let { start, end, offset } = this.state;
         end = (end === -1) ? this.player.getDuration() : end;
 
-        if (this.player.getCurrentTime() - offset < (start - LAP_MARGIN) || this.player.getCurrentTime() - offset > (end + LAP_MARGIN)) {
+        if (this.player.getCurrentTime() - offset < (start - LAP_MARGIN_START) || this.player.getCurrentTime() - offset > (end + LAP_MARGIN_END)) {
             this.seekTo({ seconds: start });
             this.shouldPause = true;
         }
