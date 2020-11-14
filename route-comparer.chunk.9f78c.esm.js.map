@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./routes/comparer/index.tsx"],"names":["Comparer"],"mappings":"6FAAA,uBAMeA,UAJuB,IAC3B","file":"route-comparer.chunk.9f78c.esm.js","sourcesContent":["import { FunctionalComponent, h } from \"preact\"\n\nconst Comparer: FunctionalComponent = () => {\n    return <div>Comparer</div>\n}\n\nexport default Comparer;\n\n"],"sourceRoot":""}
