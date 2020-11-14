@@ -96,7 +96,7 @@ export class Video extends Component<VideoProps, VideoState> {
         let { start, end, offset } = this.state;
         end = (end === -1) ? this.player.getDuration() : end;
 
-        if (this.player.getCurrentTime() < (start + offset - LAP_MARGIN) || this.player.getCurrentTime() > (end + offset + LAP_MARGIN)) {
+        if (this.player.getCurrentTime() + offset < (start - LAP_MARGIN - offset) || this.player.getCurrentTime() + offset > (end + offset + LAP_MARGIN)) {
             this.seekTo({ seconds: start });
             this.shouldPause = true;
         }

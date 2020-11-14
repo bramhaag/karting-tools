@@ -25,7 +25,6 @@ export class VideosWrapper extends Component<VideosWrapperProps> {
         const { targetId, opportunityId } = this.props;
 
         const params = new URLSearchParams(window.location.search)
-        console.log(params)
 
         const offset = params.get("offset")
         if (offset) {
