@@ -46,7 +46,6 @@ export class Video extends Component<VideoProps, VideoState> {
     initializePlayer = (e: { target: YouTubePlayer }) => {
         this.player = e.target;
         this.play()
-        this.player.getIframe().parentElement?.getElementsByTagName("div")[0].remove()
 
         setInterval(this.tick, 10)
     }
@@ -125,7 +124,8 @@ const playerSettings: PlayerVars = {
     enablejsapi: 1,
     modestbranding: 1,
     rel: 0,
-    mute: 1
+    mute: 1,
+    controls: 0
 }
 
 export default Video
