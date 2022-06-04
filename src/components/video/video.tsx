@@ -125,7 +125,7 @@ const playerSettings: PlayerVars = {
     modestbranding: 1,
     rel: 0,
     mute: 1,
-    controls: 0
+    controls: 1
 }
 
 export default Video
