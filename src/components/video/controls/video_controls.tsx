@@ -44,7 +44,7 @@ export class VideoControls extends Component<VideoControlsProps, VideoControlsSt
         } else {
             items = laps.map((lap, i) => ({
                 value: i.toString(),
-                text: `Lap ${i + 1}: ${toHuman(lap.time * 1000, false)}`,
+                text: `Lap ${i + 1}: ${toHuman(lap.time * 1000)}`,
                 selected: lap.index == active
             }));
         }

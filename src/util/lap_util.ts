@@ -31,20 +31,14 @@ export function toMillis(time: string) {
     return Date.parse(`01-01-1970 ${time} UTC`)
 }
 
-export function toHuman(time: number, padZeros = true, withMillis = true, millisDelim = '.') {
-    const date = new Date(0)
-    date.setMilliseconds(time)
+export function toHuman(time: number) {
+	const minutes = Math.floor(time / 60_000);
+	const seconds = Math.floor(time / 1000) % 60;
+	const millis = time % 1000;
 
-    const parts = [date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()]
-    while (!padZeros && parts[0] === 0) {
-        parts.shift()
-    }
-
-    let result = parts.map(part => `0${part}`.slice(-2)).join(":")
-
-    if (withMillis) {
-        result += millisDelim + date.getUTCMilliseconds()
-    }
+	let result = ""
+	if (minutes > 0) result += minutes.toString().padStart(2, '0') + ":"
+	result += `${seconds.toString().padStart(2, '0')}.${millis.toString().padStart(3, '0')}`
 
     return result
 }
